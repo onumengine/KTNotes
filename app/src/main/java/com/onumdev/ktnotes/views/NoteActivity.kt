@@ -56,7 +56,7 @@ class NoteActivity : AppCompatActivity() {
         val noteTitle: String? = noteTitleInput.text.toString()
         val noteBody: String? = noteBodyInput.text.toString()
 
-        if (!noteTitle!!.isEmpty() && !noteBody!!.isEmpty()) {
+        if (noteTitle!!.isNotEmpty() && noteBody!!.isNotEmpty()) {
 
             if (intent.extras != null) {
 
@@ -78,13 +78,13 @@ class NoteActivity : AppCompatActivity() {
                     NotesDBTable.notesTable?.updateNoteText(noteTitle, noteBody)
                 }
             } else {
-                saveContentsOfTextfieldsAsNote(noteTitle, noteBody)
+                saveContentsOfTextFieldsAsNote(noteTitle, noteBody)
             }
 
         }
     }
 
-    private fun saveContentsOfTextfieldsAsNote(title: String, body: String) {
+    private fun saveContentsOfTextFieldsAsNote(title: String, body: String) {
         val note = Note(title, body)
         NotesDBTable.notesTable?.insertNote(note)
     }
