@@ -38,7 +38,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     override fun onStart() {
         super.onStart()
 
-        listOfNotes = NotesDBTable.notesTable?.getNoteListFromDB()!!
+        listOfNotes = NotesDBTable.notesTable?.getNoteListFromDB()!!.toSet().toList()
 
         recyclerView = findViewById(R.id.note_list_recyclerview)
         recyclerAdapter = NotesRecyclerAdapter(listOfNotes as MutableList<Note>)

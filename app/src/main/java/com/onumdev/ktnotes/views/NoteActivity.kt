@@ -34,11 +34,6 @@ class NoteActivity : AppCompatActivity() {
         populateTextFields()
     }
 
-    override fun onPause() {
-        super.onPause()
-        tryToSaveNote()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.noteactivity_menu, menu)
         return true
@@ -50,6 +45,11 @@ class NoteActivity : AppCompatActivity() {
             R.id.discard_action -> discardNote()
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        tryToSaveNote()
     }
 
     private fun tryToSaveNote() {
@@ -71,17 +71,27 @@ class NoteActivity : AppCompatActivity() {
 
                 } else if (noteTitle != titleExtra) {
 
-                    NotesDBTable.notesTable?.updateNoteTitle(noteTitle, noteBody)
+                    updateNoteTitle(noteTitle, noteBody)
 
                 } else if (noteBody != bodyExtra) {
 
-                    NotesDBTable.notesTable?.updateNoteText(noteTitle, noteBody)
+                    updateNoteBody(noteTitle, noteBody)
                 }
             } else {
                 saveContentsOfTextFieldsAsNote(noteTitle, noteBody)
             }
 
         }
+    }
+
+
+
+    private fun updateNoteTitle(noteTitle: String, noteBody: String) {
+        NotesDBTable.notesTable?.updateNoteTitle(noteTitle, noteBody)
+    }
+
+    private fun updateNoteBody(noteTitle: String, noteBody: String) {
+        NotesDBTable.notesTable?.updateNoteBody(noteTitle, noteBody)
     }
 
     private fun saveContentsOfTextFieldsAsNote(title: String, body: String) {

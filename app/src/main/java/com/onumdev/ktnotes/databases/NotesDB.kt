@@ -56,7 +56,7 @@ class NotesDB(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, 
         db.close()
     }
 
-    fun updateNoteText(title: String, body: String) {
+    fun updateNoteBody(title: String, body: String) {
         val db = writableDatabase
         val updatedText = ContentValues().apply {
             put(KEY_NOTE_BODY, body)
