@@ -1,5 +1,6 @@
 package com.onumdev.ktnotes.views
 
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -51,7 +52,7 @@ class NoteActivity : AppCompatActivity() {
         super.onBackPressed()
         tryToSaveNote()
     }
-
+    
     private fun tryToSaveNote() {
         val noteTitle: String? = noteTitleInput.text.toString()
         val noteBody: String? = noteBodyInput.text.toString()

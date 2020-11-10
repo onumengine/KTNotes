@@ -20,7 +20,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerAdapter: NotesRecyclerAdapter
     lateinit var layoutManager: LinearLayoutManager
-    lateinit var listOfNotes: List<Note>
+    lateinit var listOfNotes: MutableList<Note>
     lateinit var coordinatorLayout: CoordinatorLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +38,10 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     override fun onStart() {
         super.onStart()
 
-        listOfNotes = NotesDBTable.notesTable?.getNoteListFromDB()!!.toSet().toList()
+        listOfNotes = NotesDBTable.notesTable?.getNoteListFromDB()!!.toSet().toMutableList()
 
         recyclerView = findViewById(R.id.note_list_recyclerview)
-        recyclerAdapter = NotesRecyclerAdapter(listOfNotes as MutableList<Note>)
+        recyclerAdapter = NotesRecyclerAdapter(listOfNotes)
         layoutManager = LinearLayoutManager(this)
 
         recyclerAdapter.listener = this
