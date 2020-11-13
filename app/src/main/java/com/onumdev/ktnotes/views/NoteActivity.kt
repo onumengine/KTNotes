@@ -1,6 +1,5 @@
 package com.onumdev.ktnotes.views
 
-import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -10,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 import com.onumdev.ktnotes.R
-import com.onumdev.ktnotes.databases.NotesDBTable
+import com.onumdev.ktnotes.databases.NotesDBObject
 import com.onumdev.ktnotes.models.Note
 import kotlinx.android.synthetic.main.activity_note.*
 
@@ -66,7 +65,7 @@ class NoteActivity : AppCompatActivity() {
                 if (noteTitle != titleExtra && noteBody != bodyExtra) {
 
                     if (titleExtra != null) {
-                        NotesDBTable.notesTable?.updateNote(noteTitle, noteBody, titleExtra)
+                        NotesDBObject.notesTable?.updateNote(noteTitle, noteBody, titleExtra)
                     }
 
                 } else if (noteTitle != titleExtra) {
@@ -87,16 +86,16 @@ class NoteActivity : AppCompatActivity() {
 
 
     private fun updateNoteTitle(noteTitle: String, noteBody: String) {
-        NotesDBTable.notesTable?.updateNoteTitle(noteTitle, noteBody)
+        NotesDBObject.notesTable?.updateNoteTitle(noteTitle, noteBody)
     }
 
     private fun updateNoteBody(noteTitle: String, noteBody: String) {
-        NotesDBTable.notesTable?.updateNoteBody(noteTitle, noteBody)
+        NotesDBObject.notesTable?.updateNoteBody(noteTitle, noteBody)
     }
 
     private fun saveContentsOfTextFieldsAsNote(title: String, body: String) {
         val note = Note(title, body)
-        NotesDBTable.notesTable?.insertNote(note)
+        NotesDBObject.notesTable?.insertNote(note)
     }
 
     private fun populateTextFields() {
@@ -112,7 +111,7 @@ class NoteActivity : AppCompatActivity() {
         val noteTitle = noteTitleInput.text.toString()
         val noteBody = noteBodyInput.text.toString()
 
-        NotesDBTable.notesTable?.deleteNote(noteTitle, noteBody)
+        NotesDBObject.notesTable?.deleteNote(noteTitle, noteBody)
         clearTextFields()
         showSnackBar("Note deleted")
         returnToNotesListActivity()

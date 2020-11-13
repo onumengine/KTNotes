@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.onumdev.ktnotes.R
 import com.onumdev.ktnotes.controllers.NotesRecyclerAdapter
-import com.onumdev.ktnotes.databases.NotesDBTable
+import com.onumdev.ktnotes.databases.NotesDBObject
 import com.onumdev.ktnotes.models.Note
 import kotlinx.android.synthetic.main.activity_note_list.*
 
@@ -30,7 +30,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
 
         coordinatorLayout = coordinator
 
-        NotesDBTable.createTable(this)
+        NotesDBObject.createTable(this)
 
         val fab = fab.apply { setOnClickListener { startNoteActivity() } }
     }
@@ -38,7 +38,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     override fun onStart() {
         super.onStart()
 
-        listOfNotes = NotesDBTable.notesTable?.getNoteListFromDB()!!.toSet().toMutableList()
+        listOfNotes = NotesDBObject.notesTable?.getNoteListFromDB()!!.toSet().toMutableList()
 
         recyclerView = findViewById(R.id.note_list_recyclerview)
         recyclerAdapter = NotesRecyclerAdapter(listOfNotes)
@@ -63,7 +63,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     }
 
     override fun onDeleteButtonClick(noteTitle: String, noteBody: String) {
-        NotesDBTable.notesTable?.deleteNote(noteTitle, noteBody)
+        NotesDBObject.notesTable?.deleteNote(noteTitle, noteBody)
         onStart()
         showSnackbar()
     }

@@ -8,6 +8,6 @@ interface NotesRepository {
     fun updateNoteTitle(title: String, body: String)
     fun updateNoteBody(title: String, body: String)
     fun updateNote(title: String, body: String, whereClause: String)
-    fun getNoteLisFromDB(): LiveData<List<Note>>
+    fun getNoteListFromDB(): LiveData<List<Note>>
     fun deleteNote(title: String, body: String)
 }

@@ -2,7 +2,7 @@ package com.onumdev.ktnotes.databases
 
 import android.content.Context
 
-class NotesDBTable {
+class NotesDBObject {
 
     companion object {
 
