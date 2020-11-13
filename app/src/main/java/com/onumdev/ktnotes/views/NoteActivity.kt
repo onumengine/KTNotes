@@ -26,7 +26,6 @@ class NoteActivity : AppCompatActivity() {
 
         val toolbar = toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         rootLayout = root_layout
         noteTitleInput = note_title_textview
