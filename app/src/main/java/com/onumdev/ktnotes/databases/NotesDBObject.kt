@@ -2,23 +2,17 @@ package com.onumdev.ktnotes.databases
 
 import android.content.Context
 
-class NotesDBObject {
+object NotesDBObject {
 
-    companion object {
+    var notesDB: NotesDB? = null
+        get() = field
 
-        var notesTable: NotesDB? = null
-            get() = field
+    fun createTable(context: Context) {
 
-        fun createTable(context: Context) {
-
-            if (notesTable == null) {
-                notesTable = NotesDB(context)
-            }
-
+        if (notesDB == null) {
+            notesDB = NotesDB(context)
         }
 
     }
-
-    private constructor()
 
 }

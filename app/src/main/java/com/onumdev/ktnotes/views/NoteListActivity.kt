@@ -38,7 +38,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     override fun onStart() {
         super.onStart()
 
-        listOfNotes = NotesDBObject.notesTable?.getNoteListFromDB()!!.toSet().toMutableList()
+        listOfNotes = NotesDBObject.notesDB?.getNoteListFromDB()!!.toSet().toMutableList()
 
         recyclerView = findViewById(R.id.note_list_recyclerview)
         recyclerAdapter = NotesRecyclerAdapter(listOfNotes)
@@ -63,7 +63,7 @@ class NoteListActivity : AppCompatActivity(), NotesRecyclerAdapter.Listener {
     }
 
     override fun onDeleteButtonClick(noteTitle: String, noteBody: String) {
-        NotesDBObject.notesTable?.deleteNote(noteTitle, noteBody)
+        NotesDBObject.notesDB?.deleteNote(noteTitle, noteBody)
         onStart()
         showSnackbar()
     }

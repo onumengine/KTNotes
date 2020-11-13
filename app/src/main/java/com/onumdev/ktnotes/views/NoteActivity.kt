@@ -65,7 +65,7 @@ class NoteActivity : AppCompatActivity() {
                 if (noteTitle != titleExtra && noteBody != bodyExtra) {
 
                     if (titleExtra != null) {
-                        NotesDBObject.notesTable?.updateNote(noteTitle, noteBody, titleExtra)
+                        NotesDBObject.notesDB?.updateNote(noteTitle, noteBody, titleExtra)
                     }
 
                 } else if (noteTitle != titleExtra) {
@@ -86,16 +86,16 @@ class NoteActivity : AppCompatActivity() {
 
 
     private fun updateNoteTitle(noteTitle: String, noteBody: String) {
-        NotesDBObject.notesTable?.updateNoteTitle(noteTitle, noteBody)
+        NotesDBObject.notesDB?.updateNoteTitle(noteTitle, noteBody)
     }
 
     private fun updateNoteBody(noteTitle: String, noteBody: String) {
-        NotesDBObject.notesTable?.updateNoteBody(noteTitle, noteBody)
+        NotesDBObject.notesDB?.updateNoteBody(noteTitle, noteBody)
     }
 
     private fun saveContentsOfTextFieldsAsNote(title: String, body: String) {
         val note = Note(title, body)
-        NotesDBObject.notesTable?.insertNote(note)
+        NotesDBObject.notesDB?.insertNote(note)
     }
 
     private fun populateTextFields() {
@@ -111,7 +111,7 @@ class NoteActivity : AppCompatActivity() {
         val noteTitle = noteTitleInput.text.toString()
         val noteBody = noteBodyInput.text.toString()
 
-        NotesDBObject.notesTable?.deleteNote(noteTitle, noteBody)
+        NotesDBObject.notesDB?.deleteNote(noteTitle, noteBody)
         clearTextFields()
         showSnackBar("Note deleted")
         returnToNotesListActivity()

@@ -14,6 +14,7 @@ import com.onumdev.ktnotes.databases.NotesDBSchema.NotesTable.Columns.KEY_NOTE_T
 import com.onumdev.ktnotes.databases.NotesDBSchema.NotesTable.TABLE_NAME
 import com.onumdev.ktnotes.models.Note
 
+
 class NotesDB(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
 
